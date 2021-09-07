@@ -1,0 +1,352 @@
+<!-- FIND JOB VACANCIES BY COMPANY TEMPLATE -->
+{{ define "recommended_jobs_by_company"}}
+<section class="jobs-block pb-4 pt-lg-5" id="recommended_jobs_by_company">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-11 col-lg-10 col-12">
+        <h2 class="h3 section-heading text-center">Recommended Jobs By Company</h2>
+        <div class="row">
+          <div class="col-12">
+            <ul class="nav nav-tabs position-relative px-2" role="tablist">
+              <!-- <ul class="nav nav-tabs px-2" role="tablist"> -->
+              <li class="nav-item pe-md-5">
+                <a class="nav-link active jobs-by-company-tabs my-2"
+                  onclick="activeTab('amazon', 'rec-jobs-by-comp tab-pane')" href="#amazon" role="tab"
+                  data-bs-toggle="tab"><span>Amazon</span></a>
+              </li>
+              <li class="nav-item  pe-md-5">
+                <a class="nav-link jobs-by-company-tabs my-2" href="#uber"
+                  onclick="activeTab('uber', 'rec-jobs-by-comp tab-pane')" role="tab"
+                  data-bs-toggle="tab"><span>Uber</span></a>
+              </li>
+              <li class="nav-item  pe-md-5">
+                <a class="nav-link jobs-by-company-tabs my-2" href="#ubereats"
+                  onclick="activeTab('ubereats', 'rec-jobs-by-comp tab-pane')" role="tab"
+                  data-bs-toggle="tab"><span>Uber Eats</span></a>
+              </li>
+              <li class="nav-item  pe-md-5">
+                <a class="nav-link jobs-by-company-tabs my-2" href="#doordash"
+                  onclick="activeTab('doordash', 'rec-jobs-by-comp tab-pane')" role="tab"
+                  data-bs-toggle="tab"><span>Doordash</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div role="tabpanel" class="rec-jobs-by-comp tab-pane fade in active show" id="amazon">
+
+          <!-- WEB VERSION  -->
+          <div class="row d-none d-sm-block">
+            <div class="d-flex justify-content-end pe-3">
+              <a class="view-all" href="/search/company-amazon-jobs">View All &#10230;</a>
+            </div>
+            <div class=" owl-carousel px-0" id="amazon-jobs">
+              {{ range .jobs_by_organization.Amazon }}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex ">
+                  <div class="col-sm-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-sm-10 d-flex flex-column overflow-hidden ps-1">
+
+                    <h5 class="JobTitle overflow-hidden text-nowrap text-truncate" title="{{.JobsdetailsTitle }}">
+                      {{.JobsdetailsTitle }}</h5>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate"
+                      title="{{.JobsdetailsOrganization}}">{{.JobsdetailsOrganization}}
+                    </p>
+                    <!-- <div class="d-flex"> -->
+                    <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate"
+                      title="{{ .JobsdetailsLocation}}">Location: {{ .JobsdetailsLocation}}</p>
+                    <!-- </div> -->
+                  </div>
+                </div>
+              </a>
+              {{end}}
+
+
+            </div>
+          </div>
+
+          <!-- MOBILE VERSION -->
+          <div class="row d-block d-sm-none">
+            <div class="col-12 p-0">
+              {{ range $i,$a := .jobs_by_organization.Amazon }}
+              {{ if lt $i 3}}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex -sm">
+                  <div class="col-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-9 d-flex flex-column overflow-hidden">
+
+                    <h5 class="JobTitle overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsTitle }}</h5>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsOrganization}}
+                    </p>
+                    <div class="d-flex">
+                      <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                      <p class="JobLocation overflow-hidden text-nowrap text-truncate">Location: {{$a.JobsdetailsLocation}}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {{end}}
+              {{end}}
+            </div>
+            <div class="view-all-container">
+              <a href="/search/company-amazon-jobs">
+                <button type="button" class="btn view-all-btn font-medium -sm">View All</button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="rec-jobs-by-comp tab-pane fade" id="uber">
+
+          <!-- WEB VERSION -->
+          <div class="row d-none d-sm-block">
+            <div class="d-flex justify-content-end pe-3">
+              <a class="view-all" href="/search/company-uber-jobs">View All &#10230;</a>
+            </div>
+            <div class="owl-carousel px-0" id="uber-jobs">
+              {{ range .jobs_by_organization.Uber }}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex ">
+                  <div class="col-sm-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-sm-10 d-flex flex-column overflow-hidden ps-1">
+
+                    <h6 class="JobTitle overflow-hidden text-nowrap text-truncate">{{.JobsdetailsTitle }}</h6>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{.JobsdetailsOrganization}}
+                    </p>
+                    <!-- <div class="d-flex"> -->
+                    <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">Location: {{.JobsdetailsLocation}}</p>
+                    <!-- </div> -->
+
+                  </div>
+                </div>
+              </a>
+              {{end}}
+
+
+            </div>
+          </div>
+
+          <!-- MOBILE VERSION -->
+          <div class="row d-block d-sm-none">
+            <div class="col-12 p-0">
+              {{ range $i,$a := .jobs_by_organization.Uber }}
+              {{ if lt $i 3}}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex -sm">
+                  <div class="col-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-9 d-flex flex-column overflow-hidden">
+
+                    <h5 class="JobTitle overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsTitle }}</h5>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsOrganization}}
+                    </p>
+                    <div class="d-flex">
+                      <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                      <p class="JobLocation overflow-hidden text-nowrap text-truncate">Location: {{$a.JobsdetailsLocation}}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {{end}}
+              {{end}}
+            </div>
+            <div class="view-all-container">
+              <a href="/search/company-uber-jobs">
+                <button type="button" class="btn view-all-btn font-medium -sm">View All</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="rec-jobs-by-comp tab-pane fade" id="doordash">
+          <!-- WEB VERSION -->
+          <div class="row d-none d-sm-block">
+            <div class="d-flex justify-content-end pe-3">
+              <a class="view-all" href="/search/company-doordash-jobs">View All &#10230;</a>
+            </div>
+            <div class=" owl-carousel px-0" id="doordash-jobs">
+              {{ range .jobs_by_organization.Doordash }}
+              <a href={{.URL}}>
+                <div class="recommended-jobs-section d-flex ">
+                  <div class="col-sm-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-sm-10 d-flex flex-column overflow-hidden ps-1">
+
+                    <h6 class="JobTitle overflow-hidden text-nowrap text-truncate">{{.JobsdetailsTitle }}</h6>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{.JobsdetailsOrganization}}
+                    </p>
+                    <!-- <div class="d-flex"> -->
+                    <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">Location: {{.JobsdetailsLocation}}</p>
+                    <!-- </div> -->
+
+                  </div>
+                </div>
+              </a>
+              {{end}}
+
+
+            </div>
+          </div>
+
+          <!-- MOBILE VERSION  -->
+          <div class="row d-block d-sm-none">
+            <div class="col-12 p-0">
+              {{ range $i,$a := .jobs_by_organization.Doordash }}
+              {{ if lt $i 3}}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex -sm">
+                  <div class="col-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-9 d-flex flex-column overflow-hidden">
+
+                    <h5 class="JobTitle overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsTitle }}</h5>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsOrganization}}
+                    </p>
+                    <div class="d-flex">
+                      <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                      <p class="JobLocation overflow-hidden text-nowrap text-truncate">Location: {{$a.JobsdetailsLocation}}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {{end}}
+              {{end}}
+            </div>
+            <div class="view-all-container">
+              <a href="/search/company-doordash-jobs">
+                <button type="button" class="btn view-all-btn font-medium -sm">View All</button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="rec-jobs-by-comp tab-pane fade" id="ubereats">
+          <!-- WEB VERSION  -->
+          <div class="row d-none d-sm-block">
+            <div class="d-flex justify-content-end pe-3">
+              <a class="view-all" href="/search/company-uber-eats-jobs">View All &#10230;</a>
+            </div>
+            <div class="owl-carousel px-0" id="ubereats-jobs">
+              {{ range .jobs_by_organization.UberEats }}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex ">
+                  <div class="col-sm-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-sm-10 d-flex flex-column ps-1">
+
+                    <h6 class="JobTitle overflow-hidden text-nowrap text-truncate">{{.JobsdetailsTitle }}</h6>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{.JobsdetailsOrganization}}
+                    </p>
+                    <!-- <div class="d-flex"> -->
+                    <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">Location: {{.JobsdetailsLocation}}</p>
+                    <!-- </div> -->
+
+                  </div>
+                </div>
+              </a>
+              {{end}}
+
+
+            </div>
+          </div>
+
+          <!-- MOBILE VERSION  -->
+          <div class="row d-block d-sm-none">
+            <div class="col-12 p-0">
+              {{ range $i,$a := .jobs_by_organization.UberEats }}
+              {{ if lt $i 3}}
+              <a href="{{.URL}}">
+                <div class="recommended-jobs-section d-flex -sm">
+                  <div class="col-2 p-0">
+                    {{if eq .Logo ""}}
+                    <div class="border-blue w-100 d-flex justify-content-center text-logo" style="padding:17%">
+                      <span class="first-color font-bold">{{.LogoAsCompanyName}}</span>
+                    </div>
+                    {{else}}
+                    <img src="{{ .Logo }}">
+                    {{end}}
+                  </div>
+                  <div class="col-9 d-flex flex-column overflow-hidden">
+
+                    <h5 class="JobTitle overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsTitle }}</h5>
+                    <p class="JobOrganization overflow-hidden text-nowrap text-truncate">{{ $a.JobsdetailsOrganization}}
+                    </p>
+                    <div class="d-flex">
+                      <!-- <img src="/home/img/location.svg" class="location-img"> -->
+                      <p class="JobLocation overflow-hidden text-nowrap text-truncate">Location: 
+                        {{$a.JobsdetailsLocation}}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              {{end}}
+              {{end}}
+            </div>
+            <div class="view-all-container">
+              <a href="/search/company-uber-eats-jobs">
+                <button type="button" class="btn view-all-btn font-medium -sm">View All</button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{{end}}
